@@ -1,0 +1,6 @@
+/rmg-service-client/node_modules/*
+/rmg-system/node_modules/*
+/rmg-system/dist/*
+/rmg-system/README.md
+/rmg-system-java/target
+/rmg_phone/unpackage/*

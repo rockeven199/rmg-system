@@ -1,0 +1,48 @@
+input {
+  width: 80%;
+  font-size: 30rpx;
+  border: 1px solid transparent;
+  padding: 5rpx 20rpx;
+  height: 100%;
+}
+
+.primary-button {
+  color: white;
+  background-color: #2183d3;
+  padding: 10rpx 10rpx;
+  text-align: center;
+  width: 500rpx;
+  border-radius: 5rpx;
+  margin: 0 10rpx;
+}
+
+picker {
+  width: calc(80% + 20rpx);
+  border: 1rpx solid transparent;
+  border-radius: 10rpx;
+  outline: none;
+  padding: 10rpx 10rpx;
+}
+
+.tbn-picker {
+  text-align: center;
+  background-color: white;
+}
+
+.label {
+  min-width: 70rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0rpx 10rpx;
+  justify-content: center;
+  background-color: #ffe0c6;
+  color: #000000;
+  font-size: 25rpx;
+  font-weight: bolder;
+}
+
+.cancel-button {
+  background-color: #fd5656;
+  color: white;
+}

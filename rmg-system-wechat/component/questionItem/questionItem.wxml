@@ -1,0 +1,6 @@
+<view class="question-container" bind:tap="toggleCard" data-question-index="{{id}}" >
+  <image src="/images/question/help.svg" mode="aspectFill" />
+  <text class="question-title">{{question}}</text>
+  <image src="/images/question/people-speak.svg" mode="aspectFill" wx:if="{{showFlag}}" style="margin-top: 20rpx;" />
+  <text wx:if="{{showFlag}}" class="question-answer" style="margin-top: 20rpx;">{{answer}}</text>
+</view>

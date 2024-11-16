@@ -1,0 +1,13 @@
+<view class="container">
+  <!-- mark:文章标题 -->
+  <view class="news-title">{{msg.news_title}}</view>
+  <!-- mark:文章内容 -->
+  <view class="news-context">
+    <view wx:for="{{msg.news_text}}" wx:key="index">{{item}}</view>
+  </view>
+  <!-- mark:文章信息 -->
+  <view class="news-info">
+    <text>作者:{{msg.news_author}}</text>
+    <text>上传时间:{{msg.news_pub_datetime}}</text>
+  </view>
+</view>

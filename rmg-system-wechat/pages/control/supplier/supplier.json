@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "tableColumn": "/component/tableColumn/tableColumn",
+    "tableGroup": "/component/tableGroup/tableGroup",
+    "tableHeader": "/component/tableHeader/tableHeader",
+    "tableAddBtn":"/component/tableAddBtn/tableAddBtn"
+  },
+  "navigationBarTitleText": "供应商管理"
+}
