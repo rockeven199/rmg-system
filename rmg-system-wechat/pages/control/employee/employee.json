@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "tableGroup": "/component/tableGroup/tableGroup",
-    "tableHeader": "/component/tableHeader/tableHeader",
-    "tableColumn": "/component/tableColumn/tableColumn",
-    "tableAddBtn": "/component/tableAddBtn/tableAddBtn"
-  },
-  "navigationBarTitleText": "人员管理"
-}

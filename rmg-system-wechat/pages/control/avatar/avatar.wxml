@@ -1,9 +1,0 @@
-<view class="preview-header-image-container" wx:if="{{showPreMask}}">
-  <view class="preview-image-item" wx:for="{{user_header_array}}" wx:key="index">
-    <image src="/images/control-icon/close.svg" mode="aspectFill" class="close-button" bind:tap="deleteHeader" data-index="{{item.header_image_url}}" wx:if="{{item.header_image_url!=header_img || header_array_length>=2}}" />
-    <image src="http://127.0.0.1/users_profile/{{item.header_image_url}}" class="header-image" mode="aspectFill" data-index="{{item.header_image_url}}" bind:tap="updateHeader" />
-  </view>
-  <view class="preview-image-item add-button" bind:tap="uploadHeader">
-    <image src="/images/user-data-icon/add.svg" mode="aspectFill" style="width:40rpx;height:40rpx;" />
-  </view>
-</view>

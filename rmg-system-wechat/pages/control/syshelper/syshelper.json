@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "question":"/component/questionItem/questionItem"
-  },
-  "navigationBarTitleText": "帮助中心"
-}

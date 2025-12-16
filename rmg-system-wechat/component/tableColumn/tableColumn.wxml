@@ -1,3 +1,0 @@
-<view class="column" style="background-color: {{(col_bg_index+1) % 2==0?'#F4F6F6':'#EAECEE'}};background-color: {{bg_Color?'#ffffff':'none'}};min-width:200rpx;min-height: 70rpx;">
-  <slot></slot>
-</view>
