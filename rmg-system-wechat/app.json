@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/login/login",
+    "pages/mine/mine",
+    "pages/manage/manage",
+    "pages/control/resource/resource",
+    "pages/control/purchase/purchase",
+    "pages/control/position/position",
+    "pages/control/supplier/supplier",
+    "pages/control/employee/employee",
+    "pages/control/tenders/tenders",
+    "pages/control/worklist/worklist",
+    "pages/control/sysinfo/sysinfo",
+    "pages/control/syshelper/syshelper",
+    "pages/weather/weather",
+    "pages/control/avatar/avatar",
+    "pages/news/news"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "iconPath": "images/main_unactive.png",
+        "selectedIconPath": "images/main_inactive.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/mine_unactive.png",
+        "selectedIconPath": "images/mine_inactive.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取天气信息"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ]
+}

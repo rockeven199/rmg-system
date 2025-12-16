@@ -1,0 +1,182 @@
+.container {
+  padding-top: 30rpx;
+
+  // mark:卡片主体部分
+  .main {
+    margin-left: 10rpx;
+    width: calc(100% - 20rpx);
+    grid-template-columns: repeat(2, 1fr);
+    height: max-content;
+    display: grid;
+    grid-auto-flow: auto;
+    gap: 5rpx;
+
+    .weather-card {
+      height: max-content;
+      background-size: cover;
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 4;
+    }
+
+    .user-card {
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+
+    .time-card {
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 3;
+      grid-row-end: 3;
+      font-family: 'times';
+    }
+
+    .card-group {
+      border-radius: 15rpx;
+      box-shadow: 0px 0px 5rpx #dfdfdf;
+      background-color: #ffffff;
+      font-size: 30rpx;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding: 30rpx 0;
+      margin: 10rpx;
+
+      .year-and-month {
+        margin-bottom: 10rpx;
+        font-size: 60rpx;
+        font-weight: bolder;
+      }
+
+      .linear-text-weather {
+        background-image: linear-gradient(30deg, #ec380b, #9900ff);
+        -webkit-background-clip: text;
+        font-weight: 1000;
+        color: transparent;
+        text-align: center;
+        ;
+      }
+
+      .icon {
+        font-size: 30px;
+      }
+
+      view {
+        .weather_text {
+          font-size: 40rpx;
+          margin: 20rpx 0;
+          margin-right: 10rpx;
+          font-weight: lighter;
+        }
+
+        .weather_temp {
+          font-size: 40rpx;
+        }
+      }
+    }
+
+    .time {
+      color: #181818;
+      font-size: 45rpx;
+      letter-spacing: 2rpx;
+    }
+  }
+
+  // mark:新闻公告
+  .more-tips {
+    width: 100%;
+    text-align: center;
+    font-size: 30rpx;
+    font-weight: lighter;
+    margin: 30rpx 0rpx;
+    position: relative;
+    color: #6e6e6e;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      height: 2.5rpx;
+      top: calc(50% - 2.5rpx);
+      width: 40%;
+      right: 0;
+      background-color: #dddddd;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      height: 2.5rpx;
+      top: calc(50% - 2.5rpx);
+      width: 40%;
+      left: 0;
+      background-color: #dddddd;
+    }
+  }
+
+  // mark:管理
+  .control-main {
+    width: calc(100% - 45rpx);
+    margin-left: 20rpx;
+    box-shadow: 0px 0px 5rpx #dfdfdf;
+    background-color: #ffffff;
+    border-radius: 5px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    position: relative;
+    overflow: hidden;
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      outline: 2rpx solid #f5f5f5;
+      padding: 20px 0;
+
+      image {
+        width: 60rpx;
+        height: 60rpx;
+      }
+
+      .control-text {
+        font-size: 30rpx;
+        margin-top: 10rpx;
+      }
+    }
+  }
+
+  // mark:新闻
+  .new-container {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+
+    .new-swiper {
+      border: 2rpx solid #e4e4e4;
+      width: calc(100% - 35rpx);
+      margin-left: 20rpx;
+      height: 100rpx;
+      background-color: white;
+      border-radius: 5px;
+
+      swiper {
+        height: 100%;
+
+        swiper-item {
+          display: flex;
+          align-items: center;
+          font-size: 30rpx;
+          padding-left: 10rpx;
+        }
+      }
+    }
+  }
+}

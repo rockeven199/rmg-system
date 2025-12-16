@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- mark:卡片主体部分 -->
+  <view class="main">
+    <!-- mark:欢迎卡片 -->
+    <view class="card-group user-card">
+      <view class="linear-text-weather" wx:if="{{isLogin}}">
+        <text style="font-size: 35rpx;">{{hello_tips}}</text>
+        <text style="font-size: 40rpx;">{{username}}</text>
+      </view>
+      <view class="linear-text-weather" wx:else>
+        <text style="font-size: 35rpx;color:#da4315;letter-spacing: 2.5rpx;" bind:tap="goPage">请登录</text>
+      </view>
+    </view>
+    <!-- mark:时间卡片 -->
+    <view class="card-group time-card">
+      <text class="year-and-month">{{year}} {{month}}</text>
+      <text class="time">{{time}}</text>
+    </view>
+    <!-- mark:天气卡片 -->
+    <view class="card-group" style="background-image: url('{{static_server}}/image/weather/qing.jpg');backdrop-filter: blur(5px);grid-row-start: 1;grid-row-end: 4;background-size: cover;padding: 40rpx 0;" data-page="weather" bind:tap="goPage">
+      <image src="{{static_server}}/icons/{{weather_icon}}-fill.svg" mode="aspectFit" style="width: 100%;height: 130rpx;padding: 15rpx 0;border-radius: 10px;backdrop-filter: blur(5px);" />
+      <view style="display: flex;flex-direction: column;align-items: center;width: 100%;">
+        <text class="weather_text">{{weather_text}}</text>
+        <text class="weather_temp">{{weather_temp}}°</text>
+      </view>
+    </view>
+  </view>
+  <!-- mark:新闻公告 -->
+  <view class="more-tips">公告</view>
+  <view class="new-container">
+    <view class="new-swiper">
+      <swiper autoplay="true" interval="3500" duration="400" circular="true" vertical="true" easing-function="linear">
+        <swiper-item wx:for="{{news}}" style="position: relative;text-align: center;" bind:tap="moreNewsInfo" data-newsID="{{item.newsID}}" wx:key="newsID">
+          <view style="width: 90%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden; ">{{item.title}}</view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+  <!-- mark:管理 -->
+  <view class="more-tips">管理</view>
+  <view class="control-main">
+    <view class="control-group" data-page="resource" bind:tap="goPage">
+      <image src="/images/control-icon/resource.svg" mode="aspectFill" />
+      <text class="control-text">资产</text>
+    </view>
+    <view class="control-group" data-page="purchase" bind:tap="goPage">
+      <image src="/images/control-icon/buy.svg" mode="aspectFill" />
+      <text class="control-text">采购</text>
+    </view>
+    <view class="control-group" data-page="position" bind:tap="goPage">
+      <image src="/images/control-icon/location.svg" mode="aspectFill" />
+      <text class="control-text">位置</text>
+    </view>
+    <view class="control-group" data-page="supplier" bind:tap="goPage">
+      <image src="/images/control-icon/suppor.svg" mode="aspectFill" />
+      <text class="control-text">供应商</text>
+    </view>
+    <view class="control-group" data-page="employee" bind:tap="goPage">
+      <image src="/images/control-icon/person.svg" mode="aspectFill" />
+      <text class="control-text">人员</text>
+    </view>
+    <!-- <view class="control-group" data-page="tenders" bind:tap="goPage">
+      <image src="/images/control-icon/tenders.svg" mode="aspectFill" />
+      <text class="control-text">招|投标</text>
+    </view> -->
+    <!-- <view class="control-group" data-page="worklist" bind:tap="goPage">
+      <image src="/images/control-icon/list.svg" mode="aspectFill" />
+      <text class="control-text">工单</text>
+    </view> -->
+    <!-- <view class="control-group" data-page="sysinfo" bind:tap="goPage">
+      <image src="/images/control-icon/info.svg" mode="aspectFill" />
+      <text class="control-text">系统信息</text>
+    </view> -->
+    <view class="control-group" data-page="syshelper" bind:tap="goPage">
+      <image src="/images/control-icon/helper.svg" mode="aspectFill" />
+      <text class="control-text">帮助</text>
+    </view>
+  </view>
+</view>

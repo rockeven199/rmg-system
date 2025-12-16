@@ -1,0 +1,23 @@
+<view class="container">
+  <view class="page-title">
+    <text>登录</text>
+  </view>
+  <view class="input-group">
+    <input type="text" model:value="{{username}}" placeholder="用户名" style="border-bottom: {{user_null?' 1rpx solid red':'1rpx solid #3d3d3d'}}" />
+    <text style="opacity: {{user_null?'1':'0'}}">用户名不能为空！</text>
+  </view>
+  <view class="input-group">
+    <input type="text" model:value="{{password}}" placeholder="密码" style="border-bottom: {{pwd_null ? '1rpx solid red':'1rpx solid #3d3d3d'}}" />
+    <text style="opacity: {{pwd_null?'1':'0'}}">密码不能为空！</text>
+  </view>
+  <view class="input-group">
+    <view style="display: flex;">
+      <input type="text" model:value="{{captcha}}" placeholder="验证码" style="border-bottom: {{captcha_null ? '1rpx solid red':'1rpx solid #3d3d3d'}};width: 50%;" maxlength="5" />
+      <image src="{{code}}" style="width: 180rpx;height: 90rpx;margin-left: 20rpx;" mode="aspectFit" bind:tap="getCaptcha" />
+    </view>
+    <text style="opacity: {{captcha_null?'1':'0'}}">请输入验证码！</text>
+  </view>
+  <view class="control-button">
+    <button class="login-button" bind:tap="login">登录</button>
+  </view>
+</view>

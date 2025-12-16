@@ -1,0 +1,56 @@
+{
+  "name": "rmg-system-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@icon-park/vue-next": "^1.4.2",
+    "@vueuse/core": "^10.7.0",
+    "animate.css": "^4.1.1",
+    "axios": "^1.7.2",
+    "caniuse-lite": "^1.0.30001662",
+    "element-plus": "^2.4.3",
+    "require": "^2.4.20",
+    "rmg-system-website": "file:",
+    "rmg-website": "file:",
+    "sass": "^1.69.5",
+    "uninstall": "^0.0.0",
+    "vue": "^3.3.10",
+    "vue-cookies": "^1.8.4",
+    "vue-project": "file:",
+    "vue-router": "^4.2.5",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@locator/runtime": "^0.4.4",
+    "@vitejs/plugin-vue": "^4.5.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.5"
+  },
+  "description": "This template should help get you started developing with Vue 3 in Vite.",
+  "main": "postcss.config.js",
+  "keywords": [
+    "资产管理系统"
+  ],
+  "author": "rockeven199",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rockeven199/rmg-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rockeven199/rmg-website/issues"
+  },
+  "homepage": "https://github.com/rockeven199/rmg-website#readme",
+  "directories": {
+    "lib": "lib"
+  }
+}

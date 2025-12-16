@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.from {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.from div {
+  margin: 15px 0;
+}
+.from .login {
+  border-radius: 0px;
+  background-color: rgb(250, 250, 250);
+  border: none;
+  outline: 2px solid rgb(243, 243, 243);
+}
+.from .group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.from .group p {
+  position: absolute;
+  left: 10px;
+  font-size: 12px;
+  transition: all 0.25s;
+  top: 10px;
+}
+.from .group input {
+  font-size: 15px;
+  width: 270px;
+  padding: 10px 5px;
+  transition: all 0.25s;
+}
+.from .group .input-item:focus + p {
+  top: -10px;
+  letter-spacing: 0.5px;
+  font-size: 10px;
+  background: #ffffff;
+  transition: all 0.25s;
+  padding: 1px;
+}
+.from .group .input-item:focus {
+  outline-color: hwb(202 0% 2%);
+  box-shadow: 0px 0px 5px #0095ff;
+}
+.from .group .input-item:valid + p {
+  top: -10px;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  background: #ffffff;
+}
+.from div input {
+  padding: 5px 0;
+  width: 50px;
+  letter-spacing: 1px;
+  font-size: 12px;
+  border-radius: 2.5px;
+  border: none;
+  outline: 1px solid rgb(244, 244, 244);
+  border: 1px solid rgb(211, 211, 211);
+}
+
+#submit {
+  border-radius: 5px;
+  width: 100px;
+}/*# sourceMappingURL=login.css.map */

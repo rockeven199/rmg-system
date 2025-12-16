@@ -1,0 +1,46 @@
+<view style="width: 100%;display: flex;justify-content: center;flex-direction: column;height: 1vh;margin-top: 50px;align-items: center;">
+  <!-- 分页 -->
+  <view style="width: 100%;height: 20px;display: flex;justify-content: center;margin-bottom: 20rpx;">
+    <view wx:for="{{totalCount/12+1}}" wx:if="{{item!=0}}" wx:key="item" data-limit="{{(item-1)*12}}" style="background-color: #2f83f1;color:white;text-align: center;width: 60rpx;height: 60rpx;margin: 0px 5rpx;border-radius: 10rpx;" bind:tap="changePage">{{item}}</view>
+  </view>
+
+  <!-- 添加记录按钮 -->
+  <view style="text-align: center;width: calc(100% - 20rpx);box-shadow:0px 0px 5rpx #525252;font-size: 30rpx;padding:20rpx 0;" class="primary-button" bind:tap="addNewData">添加记录</view>
+</view>
+
+<!-- 提交表单 -->
+<view style="width: 100%;height: 100%;position: fixed;z-index: 10;top: 0;background-color: #000000d3;color: #000000;overflow: scroll;" wx:if="{{showModel}}">
+  <form catchsubmit="checkForm" style="width: 100%;height:50%;position: absolute;top: 20px;">
+    <view style="width: calc(90% - 40rpx);height: max-content;padding: 2.5vh 30rpx;background-color: rgb(240, 240, 240);margin-left: 30rpx;border-radius: 20rpx;">
+      <!-- 控件 -->
+      <view wx:for="{{header}}" wx:key="header" style="width:100%;display: flex;align-items: center;justify-content: center;height: 80rpx;box-shadow: 0rpx 0rpx 10rpx rgb(126, 126, 126);margin: 15rpx 0;border-radius: 10rpx;overflow: hidden;">
+        <!-- 数量按钮 -->
+        <text class="label">{{item.label}}</text>
+        <input type="{{item.label=='数量'?text:number}}" disabled="{{item.label=='id'?true:false}}" style="background-color:{{item.label=='id'?'#d1d1d1':'#ffffff'}};" wx:if="{{item.type=='input'}}" data-label="{{item.yield}}" name="{{item.label!='id'?item.yield:''}}" placeholder="{{item.label!='id'?'请输入'+item.label:'自动添加'}}" placeholder-style="color:#000000;" />
+        <!-- 选则器1 -->
+        <picker data-yield="{{item.yield}}" name="{{item.yield}}" wx:if="{{item.type=='user-picker' && item.group==1}}" mode="selector" bindchange="choose" range="{{state}}" model:value="{{initJSON.state}}" class="tbn-picker" data-state="{{item.state}}" data-group="1">
+          <view class="picker" style="width: 100%;height: 100%;">{{initJSON.state}}</view>
+        </picker>
+        <!-- 选则器2 -->
+        <picker data-yield="{{item.yield}}" name="{{item.yield}}" wx:if="{{item.type=='user-picker' && item.group==2}}" mode="selector" bindchange="choose" range="{{state2}}" model:value="{{initJSON.state2}}" class="tbn-picker" data-state="{{item.state2}}" data-group="2">
+          <view class="picker" style="width: 100%;height: 100%;">{{initJSON.state2}}</view>
+        </picker>
+        <picker data-yield="{{item.yield}}" name="{{item.yield}}" wx:if="{{item.type=='user-picker' && item.group==3}}" mode="selector" bindchange="choose" range="{{state3}}" model:value="{{initJSON.state3}}" class="tbn-picker" data-state="{{item.state3}}" data-group="3">
+          <view class="picker" style="width: 100%;height: 100%;">{{initJSON.state3}}</view>
+        </picker>
+        <picker bind:tap="choose({{item.yield}})" data-yield="{{item.yield}}" name="{{item.yield}}" wx:if="{{item.type=='user-picker' && item.group==4}}" mode="selector" bindchange="choose" range="{{state4}}" model:value="{{initJSON.state4}}" class="tbn-picker" data-state="{{item.state3}}" data-group="4">
+          <view class="picker" style="width: 100%;height: 100%;">{{initJSON.state4}}</view>
+        </picker>
+        <!-- 时间选则器 -->
+        <picker data-yield="{{item.yield}}" mode="date" style="background-color: white;text-align: center;" name="{{item.yield}}" wx:if="{{item.type=='date-picker'}}" data-index="{{index}}" bindchange="chooseDate">
+          <view class="picker" style="width: 100%;">{{date[index-3]}}</view>
+        </picker>
+      </view>
+    </view>
+    <!-- 操作按钮 -->
+    <view style="display: flex;background-color: white;margin:15rpx 30rpx;border-radius: 20rpx;align-items: center;padding:15rpx 0;justify-content:space-around;width: calc(100% - 60rpx);">
+      <button style="font-size:25rpx !important;padding: 5px 0 !important;color: #ffffff;letter-spacing: 2px;font-weight: lighter;width: 150rpx;" class="primary-button" formType="submit">提交</button>
+      <button style="font-size:25rpx !important;padding: 5px 0 !important;letter-spacing: 2px;font-weight: lighter;width: 150rpx;" class="cancel-button" bind:tap="closeMask">取消</button>
+    </view>
+  </form>
+</view>

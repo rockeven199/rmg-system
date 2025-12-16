@@ -1,0 +1,24 @@
+@url = http://127.0.0.1:8080 
+
+###
+http://127.0.0.1:8080/resource/select_resource?startIndex=0
+content-type: application/json
+
+###
+{{url}}/suppliers/select_suppliers?startIndex=0&endIndex=12
+
+###
+Delete {{url}}/suppliers/delete_multiple_data/[]
+
+###
+PUT {{url}}/resource/update_resource/
+
+###
+# 采购
+{{url}}/purchase/select_purchase?startIndex=0&endIndex=12
+
+###
+{{url}}/base/get_data_total_count?type=position
+
+###
+{{url}}/position/query_keywords?keywords="仓库6"

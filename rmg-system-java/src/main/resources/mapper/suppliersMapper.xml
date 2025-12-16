@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rockeven199.rmg.mapper.SuppliersMapper">
+    <select id="selectSuppliers" resultType="com.rockeven199.rmg.entity.Suppliers">
+        select *
+        from rmg_suppliers limit ${startIndex},${endIndex};
+    </select>
+
+    <select id="queryKeywords" resultType="com.rockeven199.rmg.entity.Suppliers">
+        SELECT *
+        from rmg_suppliers
+        WHERE suppliers_id = #{keywords}
+           or suppliers_name = #{keywords}
+           or suppliers_phone = #{keywords}
+           or suppliers_email = #{keywords}
+           or suppliers_address = #{keywords}
+           or suppliers_description = #{keywords}
+           or suppliers_country = #{keywords}
+    </select>
+</mapper>

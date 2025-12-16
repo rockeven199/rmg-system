@@ -1,0 +1,282 @@
+page {
+  height: 100%;
+
+  .container {
+    height: inherit;
+    background-size: 100% 100%;
+    position: relative;
+    overflow: hidden;
+
+    .now-container-tempture {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      background-image: linear-gradient(#ffffff00 40%, #f0f0f0e0 80%);
+      backdrop-filter: blur(5px);
+
+      .now-location-container {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        margin-left: 25rpx;
+        border-radius: 10rpx;
+        padding: 70rpx 0;
+
+        .tempture-text {
+          font-size: 180rpx;
+          font-weight: 500;
+          margin-left: 50rpx;
+          text-align: center;
+          color: #ffffff;
+          text-shadow: 0px 0px 20rpx rgb(114, 114, 114);
+        }
+
+        .location-container {
+          text-align: center;
+          padding: 10rpx 0;
+          color: #353535;
+          font-size: 35rpx;
+          font-weight: 800;
+          display: flex;
+          align-items: center;
+
+          .now-province {
+            margin-right: 10rpx;
+          }
+        }
+      }
+
+      .now-location-weather-info {
+        width: calc(100% - 60rpx);
+        display: flex;
+        flex-direction: column;
+        line-height: 40rpx;
+        margin-top: 40rpx;
+        margin-bottom: 80rpx;
+        margin-left: 30rpx;
+        padding: 20rpx;
+        border-radius: 10rpx;
+
+        .weather-info {
+          margin: 10rpx 0;
+          font-size: 30rpx;
+          font-weight: lighter;
+          color: #000000;
+        }
+      }
+    }
+
+    .deily-text {
+      background-color: #ffffff;
+      font-size: 30rpx;
+      padding: 30rpx 0 30rpx 30rpx;
+      font-weight: lighter;
+      box-shadow: 0px 0px 5rpx inset #a5a5a5;
+    }
+
+    .future-daily-weather {
+      display: grid;
+      grid-template-rows: repeat(7, 1fr);
+      background-color: #ffffff;
+      gap: 30rpx;
+      justify-items: center;
+      padding: 30rpx 0;
+
+      .daily-card {
+        background-color: #ffffff;
+        max-height: 180rpx;
+        display: grid;
+        padding: 20rpx 40rpx;
+        justify-items: center;
+        align-items: center;
+        width: calc(100% - 120rpx);
+        border-radius: 20rpx;
+        grid-template-columns: auto repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        box-shadow: 0px 0px 5rpx #cccccc;
+
+        .w-icon {
+          width: 80rpx;
+          height: 80rpx;
+        }
+
+        .w-text {
+          margin: 10rpx 5rpx;
+          font-size: 30rpx;
+          grid-column-start: 1;
+          grid-column-end: 1;
+        }
+
+        .min-view {
+          display: flex;
+          flex-direction: column;
+          grid-row-start: 1;
+          grid-row-end: 4;
+          grid-column-start: 3;
+          grid-column-end: 3;
+
+          .min-icon {
+            width: 40rpx;
+            height: 40rpx;
+          }
+
+          .min-text {
+            margin-top: 20rpx;
+            font-size: 30rpx;
+          }
+        }
+
+        .max-view {
+          display: flex;
+          flex-direction: column;
+          grid-row-start: 1;
+          grid-row-end: 4;
+          grid-column-start: 2;
+          grid-column-end: 2;
+
+          .max-icon {
+            width: 40rpx;
+            height: 40rpx;
+          }
+
+          .max-text {
+            margin-top: 20rpx;
+            font-size: 30rpx;
+          }
+        }
+
+        .sky-cloud-icon {
+          width: 40rpx;
+          height: 40rpx;
+        }
+
+        .date-view {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          grid-row-start: 3;
+          grid-row-end: 3;
+
+          .date-text {
+            font-size: 25rpx;
+            margin-left: 10rpx;
+          }
+
+          .date-icon {
+            width: 30rpx;
+            height: 30rpx;
+          }
+        }
+
+
+        .cloud-view {
+          display: flex;
+          flex-direction: column;
+          grid-row-start: 1;
+          grid-row-end: 4;
+          grid-column-start: 4;
+          grid-column-end: 4;
+
+          .cloud-icon {
+            width: 40rpx;
+            height: 40rpx;
+          }
+
+          .cloud-text {
+            font-size: 30rpx;
+            margin-top: 20rpx;
+          }
+        }
+
+
+        .speed-view {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          grid-row-start: 1;
+          grid-row-end: 4;
+          grid-column-start: 5;
+          grid-column-end: 5;
+
+          .speed-icon {
+            width: 40rpx;
+            height: 40rpx;
+          }
+
+          .speed-text {
+            font-size: 30rpx;
+            margin-top: 20rpx;
+          }
+        }
+
+        .vis-view {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          grid-row-start: 1;
+          grid-row-end: 4;
+          grid-column-start: 6;
+          grid-column-end: 6;
+
+          .vis-icon {
+            width: 40rpx;
+            height: 40rpx;
+            grid-row-start: 1;
+            grid-row-end: 1;
+            grid-column-start: 6;
+            grid-column-end: 6;
+          }
+
+          .vis-text {
+            font-size: 30rpx;
+            margin-top: 20rpx;
+          }
+        }
+      }
+    }
+  }
+
+  .info-mask {
+    display: flex;
+    justify-content: center;
+    background-color: #f7f7f7;
+    // width: 200rpx;
+    // height: 60rpx;
+    position: absolute;
+    filter: drop-shadow(0px 0px 5rpx #aaaaaa);
+    border-radius: 5rpx;
+    z-index: -1;
+    padding: 10rpx;
+
+    .info-text {
+      font-size: 30rpx;
+      display: flex;
+      align-items: center;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 30rpx;
+      height: 30rpx;
+      z-index: -1;
+      background-color: #f7f7f7;
+      transform: rotate(45deg);
+      top: -15rpx;
+      font-size: 12rpx;
+    }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-loading {
+  animation: loading forwards 2s;
+}
