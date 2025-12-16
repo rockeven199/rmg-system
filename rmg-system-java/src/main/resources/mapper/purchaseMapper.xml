@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rockeven199.rmg.mapper.PurchaseMapper">
+    <select id="selectPurchase" resultType="com.rockeven199.rmg.entity.Purchase">
+        select *
+        from rmg_purchase limit ${startIndex},${endIndex};
+    </select>
+    <select id="getTotalPurchaseCount">
+        select count(purchase_id)
+        from rmg_purchase;
+    </select>
+    <select id="queryKeywords" resultType="com.rockeven199.rmg.entity.Purchase">
+        SELECT *
+        from rmg_purchase
+        WHERE purchase_id = #{keywords}
+           or purchase_name = #{keywords}
+           or purchase_count = #{keywords}
+           or purchase_start_time = #{keywords}
+           or purchase_end_time = #{keywords}
+           or purchase_state = #{keywords}
+    </select>
+</mapper>
