@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>主页</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <%- include('lib.ejs') %>
+  </head>
+  <body class="bg-[#ddd]">
+    <table
+      style="width: calc(100% - 20px); overflow: hidden"
+      class="ml-[10px] data-table mt-[10px] rounded-[5px] border-solid"
+      cellpadding="0"
+      cellspacing="0"
+    >
+      <tr class="data-table-header">
+        <th>服务编号</th>
+        <th>反馈类型</th>
+        <th>等级</th>
+        <th>反馈内容</th>
+        <th>提交时间</th>
+        <th>处理时间</th>
+        <th>处理状态</th>
+      </tr>
+
+      <% list.forEach(function (element) { %>
+      <tr>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_id %></td>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_title %></td>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_type %></td>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_content %></td>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_submit_time %></td>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_repair_time %></td>
+        <td class="text-[12px] preJS-render-td preJS-success <%= element.report_repair_state=='处理完成'?'preJS_success':element.report_repair_state=='待处理'?'preJS-error':'preJS-default' %>"><%= element.report_repair_state %></td>
+        <% }) %>
+      </tr>
+    </table>
+  </body>
+</html>

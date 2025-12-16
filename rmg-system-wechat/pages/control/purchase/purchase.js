@@ -4,29 +4,29 @@ Page({
     body: '',
     // 'id', '名称', '数量', '开始时间', '结束时间', '状态'
     header: [{
-      field: 'purchase_id',
+      yield: 'purchase_id',
       label: 'id',
       type: "input"
     }, {
-      field: 'purchase_name',
+      yield: 'purchase_name',
       label: "名称",
       type: "input"
     }, {
-      field: 'purchase_count',
+      yield: 'purchase_count',
       label: "数量",
       type: 'input'
     }, {
-      field: 'purchase_start_time',
+      yield: 'purchase_start_time',
       label: "开始时间",
       type: 'date-picker',
       group: 1
     }, {
-      field: 'purchase_end_time',
+      yield: 'purchase_end_time',
       label: "结束时间",
       type: 'date-picker',
       group: 2
     }, {
-      field: 'purchase_state',
+      yield: 'purchase_state',
       label: "状态",
       type: 'user-picker',
       group: 3
@@ -38,7 +38,8 @@ Page({
     confirmDelete: false,
     confirmStr: '',
     totalCount: 0,
-    startIndex: 0
+    startIndex: 0,
+    purchase_state: []
   },
   replyLimit(e) {
     this.setData({
@@ -48,7 +49,8 @@ Page({
   },
   queryData() {
     app.reqData(app.javaServer, "/purchase/select_purchase", "GET", {
-      startIndex: this.data.startIndex
+      startIndex: this.data.startIndex,
+      endIndex: this.data.startIndex + 12
     }, null, {
       Authorization: app.reqHeader.token
     }, null, true).then((res) => {
@@ -73,7 +75,7 @@ Page({
       this.setData({
         update: {
           id: ele.currentTarget.dataset.id,
-          field: ele.currentTarget.dataset.label,
+          yield: ele.currentTarget.dataset.label,
           value: ele.detail.value
         }
       })
@@ -82,8 +84,8 @@ Page({
       this.setData({
         update: {
           id: ele.currentTarget.dataset.id,
-          field: ele.currentTarget.dataset.label,
-          value: that.data.state[ele.detail.value]
+          yield: ele.currentTarget.dataset.label,
+          value: that.data.purchase_state[ele.detail.value]
         }
       })
     }
@@ -140,13 +142,14 @@ Page({
   },
   onLoad() {
     this.queryData()
+    // 字段查询
     app.queryOptions(app.javaServer, "purchase_state").then((res) => {
       this.setData({
-        state: res[0].purchase_state.split(",")
+        purchase_state: res.data[0].purchase_state.split(",")
       })
     })
   },
   onPullDownRefresh() {
     this.queryData()
-  }
+  },
 })

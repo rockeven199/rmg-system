@@ -5,33 +5,39 @@
     "compileHotReLoad": true,
     "urlCheck": false,
     "autoAudits": false,
-    "preloadBackgroundData": false
+    "preloadBackgroundData": false,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "showShadowRootInWxmlPanel": true,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true,
+    "bigPackageSizeSupport": false
   },
   "condition": {
     "miniprogram": {
       "list": [
         {
-          "name": "pages/pos",
-          "pathName": "pages/control/position/position",
+          "name": "pages/control/syshelper/syshelper",
+          "pathName": "pages/control/syshelper/syshelper",
           "query": "",
-          "launchMode": "default",
-          "scene": null
+          "scene": null,
+          "launchMode": "default"
         },
         {
-          "name": "主页",
-          "pathName": "pages/main/main",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "开发预览",
-          "pathName": "pages/control/supplier/supplier",
+          "name": "mine",
+          "pathName": "pages/mine/mine",
           "query": "",
           "launchMode": "default",
           "scene": null
         }
       ]
     }
-  }
+  },
+  "libVersion": "3.10.0"
 }

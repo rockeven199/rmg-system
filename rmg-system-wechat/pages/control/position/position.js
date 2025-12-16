@@ -38,7 +38,8 @@ Page({
   },
   queryData() {
     app.reqData(app.javaServer, "/position/select_position", "GET", {
-      startIndex: this.data.startIndex
+      startIndex: this.data.startIndex,
+      endIndex: this.data.startIndex + 12
     }, null, {
       Authorization: app.reqHeader.token
     }, null, true).then((res) => {
@@ -132,6 +133,7 @@ Page({
     this.queryData()
   },
   onLoad() {
+    app.checkLoginState()
     this.queryData()
     app.queryOptions(app.javaServer, "position_state").then((res) => {
       this.setData({

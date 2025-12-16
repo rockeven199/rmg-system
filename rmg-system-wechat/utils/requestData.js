@@ -45,7 +45,7 @@ function queryOptions(ip, data_in) {
       url: ip + '/base/get_options',
       method: "GET",
       header: {
-        Authorization: wx.getStorageSync('token')
+        Authorization: reqHeader.token
       },
       data: {
         "options_type": data_in

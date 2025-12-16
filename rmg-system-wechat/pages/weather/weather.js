@@ -4,7 +4,7 @@ let qqmapsdk;
 const app = getApp()
 Page({
   data: {
-    static_server: "http://127.0.0.1:80",
+    static_server: app.staticServer,
     now: {
       temp: "",
       feelsLike: "",

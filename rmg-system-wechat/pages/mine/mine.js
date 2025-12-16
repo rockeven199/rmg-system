@@ -1,3 +1,7 @@
+const {
+  clearLoginInfo
+} = require("../../utils/checkUtils")
+
 const app = getApp()
 Page({
   data: {
@@ -13,7 +17,8 @@ Page({
     sex: "",
     user_header_array: "",
     showPreMask: false,
-    isDelete: false
+    isDelete: false,
+    ipAddress: app.staticServer
   },
   // 登出
   logout() {
@@ -196,9 +201,20 @@ Page({
       })
     }
   },
+  // 扫描登陆二维码
+  scanLoginCode() {
+    wx.scanCode({
+      success(result) {
+        app.reqData(app.javaServer, "/login/check_QR_code", "GET", {
+          token: wx.getStorageSync('Token'),
+          QRSessionID: result.result
+        })
+      }
+    })
+  },
   // 更新个人数据
   updateProfile(e) {
-    let temp=new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}|^1(3[0-9]|4[57]|5[0-35-9]|7[0678]|8[0-9])\d{8}$/)
+    let temp = new RegExp(/\d{3}-\d{8}|\d{4}-\d{7}|^1(3[0-9]|4[57]|5[0-35-9]|7[0678]|8[0-9])\d{8}$/)
     console.log(temp.test(e.detail.value))
 
     app.reqData(app.javaServer, '/user/set_user_profile', "PUT", {

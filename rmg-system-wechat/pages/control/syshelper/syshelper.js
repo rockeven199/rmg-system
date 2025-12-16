@@ -43,7 +43,7 @@ Page({
   },
   getEnterLength(e) {
     this.setData({
-      callbackTextLength: e.detail.value.length
+      callbackTextLength: String(e.detail.value).trim().length
     })
   }
 })

@@ -92,7 +92,7 @@ Page({
     // 加载字体
     wx.loadFontFace({
       family: 'times',
-      source: 'http://127.0.0.1:80/font/DS-Digital/DS-DIGIT-4.ttf',
+      source: app.staticServer + '/font/DS-Digital/DS-DIGIT-4.ttf',
     })
 
     this.getCityWeather()
@@ -115,5 +115,5 @@ Page({
     wx.navigateTo({
       url: '/pages/news/news?id=' + e.currentTarget.dataset.newsid,
     })
-  }
+  },
 })

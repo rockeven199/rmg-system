@@ -4,59 +4,59 @@ Page({
     body: '',
     header: [{
       label: "id",
-      field: 'employee_id',
+      yield: 'employee_id',
       type: 'input'
     }, {
       label: "姓名",
-      field: "employee_name",
+      yield: "employee_name",
       type: 'input'
     }, {
       label: "年龄",
-      field: "employee_age",
+      yield: "employee_age",
       type: 'input'
     }, {
       label: "性别",
-      field: "employee_sex",
+      yield: "employee_sex",
       type: 'user-picker',
       group: 1
     }, {
       label: "联系地址",
-      field: "employee_address",
+      yield: "employee_address",
       type: 'input'
     }, {
       label: "总工作时长(小时)",
-      field: "employee_worked_time",
+      yield: "employee_worked_time",
       type: 'input'
     }, {
       label: "主管部门",
-      field: "employee_department",
+      yield: "employee_department",
       type: 'user-picker',
       group: 2
     }, {
       label: "下级部门",
-      field: "employee_second_department",
+      yield: "employee_second_department",
       type: 'user-picker',
       group: 3
     }, {
       label: "岗位",
-      field: "employee_job",
+      yield: "employee_job",
       type: 'input'
     }, {
       label: "员工级别",
-      field: "employee_level",
+      yield: "employee_level",
       type: 'user-picker',
       group: 4
     }, {
       label: "联系电话",
-      field: "employee_phone",
+      yield: "employee_phone",
       type: 'input'
     }, {
       label: "证件号",
-      field: "employee_card_id",
+      yield: "employee_card_id",
       type: 'input'
     }, {
       label: "电子邮箱",
-      field: "employee_email",
+      yield: "employee_email",
       type: 'input'
     }],
     count: 0,
@@ -70,24 +70,25 @@ Page({
   },
   onLoad() {
     this.queryData()
+    app.checkLoginState()
     app.queryOptions(app.javaServer, "top_department").then((res) => {
       this.setData({
-        state: res[0].top_department.split(",")
+        state: res.data[0].top_department.split(",")
       })
     })
     app.queryOptions(app.javaServer, "sub_department").then((res) => {
       this.setData({
-        state2: res[0].sub_department.split(",")
+        state2: res.data[0].sub_department.split(",")
       })
     })
     app.queryOptions(app.javaServer, "employee_level").then((res) => {
       this.setData({
-        state3: res[0].employee_level.split(",")
+        state3: res.data[0].employee_level.split(",")
       })
     })
     app.queryOptions(app.javaServer, "gender").then((res) => {
       this.setData({
-        state4: res[0].gender.split(",")
+        state4: res.data[0].gender.split(",")
       })
     })
   },
@@ -99,7 +100,8 @@ Page({
   },
   queryData() {
     app.reqData(app.javaServer, "/employee/select_employee", "POST", {
-      startIndex: Number(this.data.startIndex)
+      startIndex: Number(this.data.startIndex),
+      endIndex: Number(this.data.startIndex) + 12
     }, null, {
       Authorization: app.reqHeader.token,
       'content-type': app.reqMethod.postForm
@@ -124,14 +126,14 @@ Page({
       this.setData({
         update: {
           id: e.currentTarget.dataset.id,
-          field: e.currentTarget.dataset.label,
+          yield: e.currentTarget.dataset.label,
           value: e.detail.value
         }
       })
     } else {
       this.setData({
         update: {
-          field: e.currentTarget.dataset.label,
+          yield: e.currentTarget.dataset.label,
           id: e.currentTarget.dataset.id,
           value: that.data[e.currentTarget.dataset.group][e.detail.value]
         }

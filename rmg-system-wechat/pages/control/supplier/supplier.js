@@ -4,33 +4,33 @@ Page({
     body: '',
     header: [{
         label: 'id',
-        field: 'suppliers_id',
+        yield: 'suppliers_id',
         type: 'input'
       },
       {
         label: '名称',
-        field: 'suppliers_name',
+        yield: 'suppliers_name',
         type: 'input'
       },
       {
         label: '联系电话',
-        field: 'suppliers_phone',
+        yield: 'suppliers_phone',
         type: 'input'
       }, {
         label: '电子邮件',
-        field: 'suppliers_email',
+        yield: 'suppliers_email',
         type: 'input'
       }, {
         label: '联系地址',
-        field: 'suppliers_address',
+        yield: 'suppliers_address',
         type: 'input'
       }, {
         label: '描述',
-        field: 'suppliers_description',
+        yield: 'suppliers_description',
         type: 'input'
       }, {
-        label: '所属国家(地区)',
-        field: 'suppliers_country',
+        label: '所属国家/地区',
+        yield: 'suppliers_country',
         type: 'input'
       }
     ],
@@ -45,6 +45,7 @@ Page({
   },
   onLoad() {
     this.queryData()
+    app.checkLoginState()
   },
   getData(e) {
     let ele = e
@@ -53,14 +54,14 @@ Page({
       this.setData({
         update: {
           id: ele.currentTarget.dataset.id,
-          field: ele.currentTarget.dataset.label,
+          yield: ele.currentTarget.dataset.label,
           value: ele.detail.value
         }
       })
     } else {
       this.setData({
         update: {
-          field: ele.currentTarget.dataset.label,
+          yield: ele.currentTarget.dataset.label,
           id: ele.currentTarget.dataset.id,
           value: that.data.prickerArr[ele.detail.value]
         }
@@ -126,7 +127,8 @@ Page({
   },
   queryData() {
     app.reqData(app.javaServer, "/suppliers/select_suppliers", "GET", {
-      startIndex: this.data.startIndex
+      startIndex: this.data.startIndex,
+      endIndex: this.data.startIndex+12
     }, null, {
       Authorization: app.reqHeader.token
     }, null, true).then((res) => {

@@ -155,12 +155,13 @@
 
   // mark:新闻
   .new-container {
+    width: 100%;
     display: flex;
     overflow: hidden;
 
     .new-swiper {
       border: 2rpx solid #e4e4e4;
-      width: calc(50% - 35rpx);
+      width: calc(100% - 35rpx);
       margin-left: 20rpx;
       height: 100rpx;
       background-color: white;

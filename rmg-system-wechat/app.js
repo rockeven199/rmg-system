@@ -29,8 +29,9 @@ App({
   queryOptions,
   reqMethod,
   reqHeader,
-  javaServer: "http://127.0.0.1:8080",
-  staticServer: "http://127.0.0.1:80"
-  // javaServer: "http://192.168.43.87:8080",
-  // staticServer:"http://192.168.43.87:80"
+  javaServer: "http://10.21.33.242:8080",
+  staticServer: "http://10.21.33.242:80",
+  // javaServer: "http://127.0.0.1:8080",
+  // staticServer: "http://127.0.0.1:80",
+  webSocketServer: "ws://10.21.33.242"
 })

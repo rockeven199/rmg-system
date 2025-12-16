@@ -23,8 +23,8 @@ Component({
     subUrl: {
       type: String
     },
-    total: {
-      type: Number
+    getTotalType: {
+      type: String
     }
   },
 
@@ -33,17 +33,18 @@ Component({
    */
   data: {
     showModel: false,
-    date: ["请选择","请选择"],
+    date: ["请选择", "请选择"],
     state: [],
     state2: [],
     state3: [],
     state4: [],
-    subJSON: {
+    initJSON: {
       state: "请选择",
       state2: "请选择",
       state3: "请选择",
       state4: "请选择"
-    }
+    },
+    totalCount: 0
   },
   /**
    * 组件的方法列表
@@ -61,34 +62,34 @@ Component({
     // 选中数据
     choose(e) {
       let index = e.currentTarget.dataset.group
-      let temp = this.data.subJSON
+      let temp = this.data.initJSON
       if (index == 1) {
         temp.state = this.data.state[e.detail.value]
         this.setData({
-          subJSON: temp
+          initJSON: temp
         })
       }
       if (index == 2) {
         temp.state2 = this.data.state2[e.detail.value]
         this.setData({
-          subJSON: temp
+          initJSON: temp
         })
       }
       if (index == 3) {
         temp.state3 = this.data.state3[e.detail.value]
         this.setData({
-          subJSON: temp
+          initJSON: temp
         })
       }
       if (index == 4) {
         temp.state4 = this.data.state4[e.detail.value]
         this.setData({
-          subJSON: temp
+          initJSON: temp
         })
       }
     },
-    changePage(e){
-      this.triggerEvent('reply',e.currentTarget.dataset.limit)
+    changePage(e) {
+      this.triggerEvent('reply', e.currentTarget.dataset.limit)
     },
     // 选择日期
     chooseDate(e) {
@@ -133,7 +134,7 @@ Component({
 
         this.setData({
           showModel: false,
-          subJSON: {
+          initJSON: {
             state: "请选择",
             state2: "请选择",
             state3: "请选择",
@@ -150,12 +151,25 @@ Component({
         state3: this.properties.state3,
         state4: this.properties.state4
       })
+    },
+    // 获取数据总条目数
+    getTotalData() {
+      app.reqData(app.javaServer, "/base/get_data_total_count", "GET", {
+        type: this.data.getTotalType
+      }, null, {
+        Authorization: app.reqHeader.token
+      }, null, false).then(res => {
+        this.setData({
+          totalCount: Number(res.data)
+        })
+      })
     }
   },
   // 生命周期
   lifetimes: {
     attached() {
       this.setRange()
+      this.getTotalData()
     }
   }
 })

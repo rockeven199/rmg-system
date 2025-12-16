@@ -2,6 +2,11 @@
 function checkLoginState() {
   if (!wx.getStorageSync('Token')) {
     wx.setStorageSync('isLogin', false)
+    wx.showToast({
+      title: '请先登录！！',
+      icon:"none",
+      duration:2000
+    })
   } else {
     wx.setStorageSync('isLogin', true)
   }

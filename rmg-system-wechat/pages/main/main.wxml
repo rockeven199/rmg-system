@@ -3,13 +3,13 @@
   <view class="main">
     <!-- mark:欢迎卡片 -->
     <view class="card-group user-card">
-      <text class="linear-text-weather" wx:if="{{isLogin}}">
+      <view class="linear-text-weather" wx:if="{{isLogin}}">
         <text style="font-size: 35rpx;">{{hello_tips}}</text>
         <text style="font-size: 40rpx;">{{username}}</text>
-      </text>
-      <text class="linear-text-weather" wx:else>
-        <text style="font-size: 35rpx;">请登录</text>
-      </text>
+      </view>
+      <view class="linear-text-weather" wx:else>
+        <text style="font-size: 35rpx;color:#da4315;letter-spacing: 2.5rpx;" bind:tap="goPage">请登录</text>
+      </view>
     </view>
     <!-- mark:时间卡片 -->
     <view class="card-group time-card">
@@ -35,7 +35,6 @@
         </swiper-item>
       </swiper>
     </view>
-    <view class="new-swiper"></view>
   </view>
   <!-- mark:管理 -->
   <view class="more-tips">管理</view>

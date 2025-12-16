@@ -2,12 +2,12 @@
   <view class="person-info-container" wx:if="{{isLogin}}">
     <!-- 头像 -->
     <view class="header-image-container">
-      <image src="http://127.0.0.1/users_profile/{{header_img}}" class="header-image" mode="aspectFill" />
+      <image src="{{ipAddress}}/users_profile/{{header_img}}" class="header-image" mode="aspectFill" />
       <view style="position: absolute;content:'';width: 85px;height:85px;box-shadow: 0px 0px 30rpx 5rpx {{sex=='女'?'#f186d6':'#86b1f1'}};animation: rotate infinite 5s linear;border-radius: 40px;z-index: 0;transform-origin: 50% 50%;"></view>
       <image src="../../images/personal-data-icon/edit.svg" style="width:40rpx;height:40rpx;position: absolute;bottom: -30rpx;right:-50rpx;padding: 50rpx;" bind:tap="changeHeaderImage" />
       <view class="preview-header-image-container" wx:if="{{showPreMask}}">
         <view class="preview-image-item" wx:for="{{user_header_array}}" wx:key="index">
-          <image src="http://127.0.0.1/users_profile/{{item.header_image_url}}" class="header-image" mode="aspectFill" data-index="{{item.header_image_url}}" bind:tap="updateHeader" bind:longpress="deleteHeader" />
+          <image src="{{ipAddress}}/users_profile/{{item.header_image_url}}" class="header-image" mode="aspectFill" data-index="{{item.header_image_url}}" bind:tap="updateHeader" bind:longpress="deleteHeader" />
         </view>
         <view class="preview-image-item add-button" bind:tap="uploadHeader">
           <image src="/images/personal-data-icon/add.svg" mode="aspectFill" style="width:50rpx;height:50rpx;" />
@@ -46,12 +46,14 @@
       <text>退出登录</text>
       <image src="../../images/personal-data-icon/exit.svg" class="edit"></image>
     </view>
+    <text style="font-size: 30rpx;margin: 15px 0;" bind:tap="scanLoginCode">使用二维码登录</text>
   </view>
   <view class="person-info-container" wx:if="{{isLogin==false}}">
     <!-- 头像 -->
-    <view style="position:relative;display: flex;align-items: center;height: 240rpx;width: 240rpx;justify-content: center;">
-      <image src="http://127.0.0.1:80/users_profile/default/default.jpg" class="header-image" />
+    <view style="height: 200rpx;display: flex;justify-content: center;margin: 30rpx 0;">
+      <image src="{{ipAddress}}/users_profile/default/default.jpg" class="header-image" />
     </view>
+    <text class="please-login-tips">请登录</text>
     <view class="login-container" bind:tap="login">
       <text>登录</text>
     </view>

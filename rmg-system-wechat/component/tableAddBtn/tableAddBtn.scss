@@ -2,7 +2,7 @@ input {
   width: 80%;
   font-size: 30rpx;
   border: 1px solid transparent;
-  padding: 5rpx 20rpx;
+  padding: 10rpx 20rpx;
   height: 100%;
 }
 
@@ -25,6 +25,9 @@ picker {
 }
 
 .tbn-picker {
+  display: flex;
+  justify-content: center;
+  height: 100%;
   text-align: center;
   background-color: white;
 }

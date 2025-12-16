@@ -3,10 +3,19 @@
 
   .person-info-container {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     padding-top: 10rpx;
+    background-color: #eeeeee;
+    height: 100%;
+
+    .please-login-tips {
+      padding: 30rpx 0;
+      font-size: 30rpx;
+      font-weight: bolder;
+      color: #2b2b2b;
+      letter-spacing: 1px;
+    }
 
     .header-image-container {
       position: relative;
@@ -121,7 +130,7 @@
       letter-spacing: 1rpx;
       font-weight: lighter;
       color: #3d3d3d;
-      font-size: 28rpx; 
+      font-size: 28rpx;
       text-align: center;
       margin-top: 10rpx;
     }
@@ -196,12 +205,13 @@
 
   .login-container {
     width: calc(100% - 200rpx);
-    background-color: #0064e7;
+    // background-color: #0064e7;
+    background: linear-gradient(50deg, #e43333, #e4c438);
     display: flex;
     padding: 30rpx 40rpx;
     box-shadow: 0px 0px 5rpx #a0a0a0;
     justify-content: center;
-    border-radius: 20rpx;
+    border-radius: 10rpx;
     margin-top: 40rpx;
 
     text {

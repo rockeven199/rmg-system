@@ -1,121 +1,119 @@
+const {
+  clearLoginInfo
+} = require("../../../utils/checkUtils")
+
 const app = getApp()
 Page({
   data: {
     body: '',
     header: [{
       label: 'id',
-      field: 'resource_id',
+      yield: 'resource_id',
       type: 'input'
     }, {
       label: '名称',
-      field: 'resource_name',
+      yield: 'resource_name',
       type: 'input'
     }, {
       label: '数量',
-      field: 'resource_count',
+      yield: 'resource_count',
       type: 'input'
     }, {
       label: '位置',
-      field: 'resource_position',
+      yield: 'resource_position',
       type: 'user-picker',
       group: 2
     }, {
       label: '状态',
-      field: 'resource_state',
+      yield: 'resource_state',
       type: 'user-picker',
       group: 1
     }],
-    count: 0,
-    state: [],
-    state2: [],
+    resource_position: [],
+    resource_state: [],
     deleteID: 0,
+    // 确认删除
     showMask: false,
     confirmDelete: false,
     confirmStr: '',
+    // 分页
     totalCount: 0,
-    startIndex: 0
+    startIndex: 0,
+    // 添加记录
+    showModel: false,
+    // 提交表单
+    stateForSubmit: "请选择资产状态",
+    positionForSubmit: "请选择存放位置",
+    nameForSubmit: "",
+    countForSubmit: "",
+    // 总条目数
+    totalCount: 12,
+    // 字段数
+    column_count: 6,
   },
-  onLoad() {
-    this.queryData()
-    this.queryPosition()
-    app.queryOptions(app.javaServer, "resource_state").then((res) => {
-      this.setData({
-        state: res[0].resource_state.split(",")
-      })
-    })
-  },
-  replyLimit(e) {
-    this.setData({
-      startIndex: e.detail,
-    })
-    this.queryData()
-  },
-  // 查询数据
-  queryData() {
-    app.reqData(app.javaServer, "/resource/select_resource", "GET", {
-      startIndex: this.data.startIndex
-    }, null, {
-      Authorization: app.reqHeader.token
-    }, null, true).then((res) => {
-      let temp = 0
-      for (let a = 0; a < Number(res.header["X-Total-Count"]) / 12; a++) {
-        if (Number(res.header["X-Total-Count"]) % 12 != 0) {
-          temp = a + 1
-        }
-      }
-      this.setData({
-        body: res.data.data,
-        count: Object.keys(res.data.data[0]).length + 1,
-        totalCount: temp
-      })
-    })
-    wx.stopPullDownRefresh()
+  // 选择器变量转换
+  togglePicker(e) {
+    const current = e.currentTarget.dataset.yield
+    switch (current) {
+      case "resource_position":
+        this.setData({
+          positionForSubmit: this.data.resource_position[e.detail.value]
+        })
+        break;
+      case "resource_state":
+        this.setData({
+          stateForSubmit: this.data.resource_state[e.detail.value]
+        })
+        break;
+    }
   },
   // 查询位置选项
   queryPosition() {
-    app.reqData(app.javaServer, '/resource/select_rosition', null, null, null, null, null).then((res) => {
-      let temp = [];
-      res.data.forEach(element => {
-        temp.push(element.name)
-      });
+    app.reqData(app.javaServer, '/base/get_position_options', "GET", null, null, {
+      Authorization: app.reqHeader.token,
+      'Content-type': app.reqMethod.postForm
+    }, null, false).then((res) => {
+      if (res.code == "200") {
+        let temp = [];
+        res.data.forEach(_element => {
+          temp.push(_element.position_name)
+        });
+        this.setData({
+          resource_position: temp
+        })
+      }
+    })
 
+    app.reqData(app.javaServer, '/base/get_options', "GET", {
+      options_type: 'resource_state'
+    }, null, {
+      Authorization: app.reqHeader.token,
+      'Content-type': app.reqMethod.postForm
+    }, null, false).then((res) => {
       this.setData({
-        state2: temp
+        resource_state: res.data[0].resource_state.split(",")
       })
     })
   },
-
+  // 查询资产状态
+  queryState() {
+    app.queryOptions(app.javaServer, "resource_state").then((res) => {
+      this.setData({
+        resource_state: res.data[0].resource_state.split(",")
+      })
+    })
+  },
   // 存储选中数据
   getData(e) {
     let ele = e
     let that = this;
-    if (ele.type == "blur") {
-      this.setData({
-        update: {
-          id: ele.currentTarget.dataset.id,
-          field: ele.currentTarget.dataset.label,
-          value: ele.detail.value
-        }
-      })
-    } else {
-      if (e.currentTarget.dataset.selectorid == "2") {
-        this.setData({
-          update: {
-            field: ele.currentTarget.dataset.label,
-            id: ele.currentTarget.dataset.id,
-            value: that.data.state2[ele.detail.value]
-          }
-        })
-      } else {
-        this.setData({
-          update: {
-            field: ele.currentTarget.dataset.label,
-            id: ele.currentTarget.dataset.id,
-            value: that.data.state[ele.detail.value]
-          }
-        })
+    this.setData({
+      update: {
+        yield: ele.currentTarget.dataset.label,
+        id: ele.currentTarget.dataset.id,
+        value: that.data.resource_position[ele.detail.value]
       }
-    }
+    })
     app.reqData(app.javaServer, "/resource/update_resource", "PUT", that.data.update, null, {
       Authorization: app.reqHeader.token,
       'Content-type': app.reqMethod.postForm
@@ -129,18 +127,21 @@ Page({
       showMask: false
     })
   },
+  // 删除数据
   deleteData(e) {
     this.setData({
       showMask: true,
       deleteID: Number(e.currentTarget.dataset.id)
     })
   },
+  // 删除控制框
   inputConfirm(e) {
     this.setData({
       showMask: true,
       confirmStr: e.detail.value
     })
   },
+  // 确认删除
   confirmDelete() {
     if (this.data.confirmStr == "删除数据") {
       this.setData({
@@ -167,7 +168,124 @@ Page({
       })
     }
   },
+  // 下拉刷新
   onPullDownRefresh() {
     this.queryData()
-  }
+    // this.getTotalData()
+  },
+  // 添加记录
+  addNewData() {
+    this.setData({
+      showModel: true
+    })
+    this.queryState()
+  },
+  closeMask() {
+    this.setData({
+      showModel: false
+    })
+  },
+  // 提交新增按钮
+  submitForm(e) {
+    let that = this
+    let flag = 0
+    const _formValue = e.detail.value
+    for (const _key in _formValue) {
+      if (_formValue[_key] == "") {
+        flag = 1
+      }
+    }
+    if (flag == 0) {
+      wx.request({
+        url: app.javaServer + "/resource/insert_resource",
+        method: 'GET',
+        dataType: "json",
+        data: {
+          "resource_name": this.nameForSubmit,
+          "resource_count": this.countForSubmit,
+          "resource_position": this.positionForSubmit,
+          "resource_state": this.stateForSubmit
+        },
+        header: {
+          Authorization: app.reqHeader.token
+        },
+        success(res) {
+          if (res.data.code == 200) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none'
+            })
+            that.setData({
+              showModel: false
+            })
+          } else {
+            wx.showToast({
+              title: '添加失败',
+              icon: 'none'
+            })
+          }
+        },
+      })
+    } else {
+      console.log('no')
+      wx.showToast({
+        title: '添加失败，请填写所有项目!',
+        icon: 'none'
+      })
+      flag = 0
+    }
+
+  },
+  // 获取数据总条目数
+  getTotalData() {
+    app.reqData(app.javaServer, "/base/get_data_total_count", "GET", {
+      type: "resource"
+    }, null, {
+      Authorization: app.reqHeader.token
+    }, null, false).then(res => {
+      this.setData({
+        totalCount: Number(res.data)
+      })
+    })
+  },
+  // 分页
+  changePage(e) {
+    app.reqData(app.javaServer, "/resource/select_resource", "GET", {
+      startIndex: e.currentTarget.dataset.limit,
+      endIndex: e.currentTarget.dataset.limit + 12
+    }, null, {
+      Authorization: app.reqHeader.token
+    }, null, true).then((res) => {
+      this.setData({
+        body: res.data.data,
+      })
+    })
+  },
+  // 查询数据
+  queryData() {
+    app.reqData(app.javaServer, "/resource/select_resource", "GET", {
+      startIndex: this.data.startIndex,
+      endIndex: this.data.startIndex + 12
+    }, null, {
+      Authorization: app.reqHeader.token
+    }, null, true).then((res) => {
+      this.setData({
+        body: res.data.data,
+      })
+    })
+    wx.stopPullDownRefresh()
+  },
+  // 初始化
+  onLoad() {
+    this.queryData()
+    this.queryPosition()
+    this.getTotalData()
+    app.checkLoginState()
+  },
+  replyLimit(e) {
+    this.setData({
+      startIndex: e.detail,
+    })
+    this.queryData()
+  },
 })
